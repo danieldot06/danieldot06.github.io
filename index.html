@@ -1,17 +1,222 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daniel Dot's personal portfolio, experience, and projects.">
+    <title>Daniel Dot | Portfolio</title>
+    <style>
+        :root {
+            --ink: #1d1d1f;
+            --muted: #555555;
+            --paper: #ffffff;
+            --panel: #f5f5f3;
+            --line: #000000;
+            --glass: rgba(255, 255, 255, .62);
+            --glass-line: rgba(255, 255, 255, .86);
+            --max-width: 1040px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fb 50%, #e9eef8 100%) fixed;
+            font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            letter-spacing: .01em;
+        }
+
+        a { color: inherit; }
+        .wrap { width: min(var(--max-width), calc(100% - 40px)); margin: 0 auto; }
+        .site-header {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(var(--max-width), calc(100% - 40px));
+            max-width: var(--max-width);
+            margin: 0;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-line);
+            border-radius: 999px;
+            box-shadow: 0 8px 28px rgba(38, 52, 76, .06);
+            transform: translateX(-50%);
+        }
+        .logo { font-size: 1.1rem; font-weight: 600; text-decoration: none; }
+        nav { display: flex; gap: 30px; font-size: 1rem; }
+        nav a { padding: 8px 14px; color: var(--ink); border-radius: 999px; text-decoration: none; transition: color .2s ease, background .2s ease; }
+        nav a:hover, nav a:focus { color: #ffffff; background: var(--ink); }
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr .42fr;
+            gap: 72px;
+            align-items: center;
+            min-height: 560px;
+            padding: 154px 0 112px;
+        }
+        .eyebrow { margin: 0 0 18px; color: var(--ink); font-size: .85rem; font-weight: 600; }
+        h1, h2, h3 { line-height: 1.1; margin-top: 0; }
+        h1 { max-width: 620px; margin-bottom: 24px; font-size: clamp(4rem, 10vw, 8rem); font-weight: 600; letter-spacing: .01em; }
+        .intro-copy { max-width: 560px; color: var(--muted); font-size: 1.15rem; letter-spacing: .025em; }
+        .intro-copy strong { color: var(--ink); }
+        .portrait {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 18px 45px rgba(38, 52, 76, .12);
+        }
+        .section { position: relative; padding: 112px 0; }
+        .section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-bottom: 48px; }
+        h2 { margin-bottom: 0; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -.045em; }
+        .section-note { max-width: 360px; margin: 0; color: var(--muted); font-size: .95rem; }
+
+        .experience-list { display: grid; gap: 14px; }
+        .experience-item { display: grid; grid-template-columns: 150px 1fr 180px; gap: 28px; padding: 30px; background: var(--glass); border: 1px solid var(--glass-line); border-radius: 22px; box-shadow: 0 12px 32px rgba(38, 52, 76, .06); backdrop-filter: blur(18px); transition: transform .25s ease, box-shadow .25s ease; }
+        .experience-item:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(38, 52, 76, .1); }
+        .date, .role, .project-type { font-size: .8rem; }
+        .date, .project-type { color: var(--muted); }
+        .experience-item h3 { margin: 0 0 3px; font-size: 1.35rem; font-weight: 600; }
+        .experience-location { display: block; margin-bottom: 8px; color: var(--muted); font-size: .9rem; }
+        .experience-item p { margin: 0; color: var(--muted); }
+        .role { text-align: right; color: var(--ink); }
+
+        .projects { background: transparent; }
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .project-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 30px; background: var(--glass); border: 1px solid var(--glass-line); border-radius: 22px; box-shadow: 0 12px 32px rgba(38, 52, 76, .06); backdrop-filter: blur(18px); transition: transform .25s ease, box-shadow .25s ease; }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(38, 52, 76, .1); }
+        .project-info { padding: 0; }
+        .project-info h3 { margin: 4px 0 8px; font-size: 1.5rem; font-weight: 600; }
+        .project-info p { margin: 0 0 22px; color: var(--muted); }
+        .project-type { display: block; color: var(--ink); letter-spacing: .02em; }
+        .project-button {
+            display: inline-block;
+            padding: 0;
+            color: var(--ink);
+            background: none;
+            border: 0;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font: inherit;
+            font-size: .9rem;
+            text-decoration: none;
+        }
+        .project-button:hover, .project-button:focus { color: #ffffff; background: var(--ink); text-decoration: none; }
+        footer { padding: 32px 0; color: var(--muted); font-size: .8rem; }
+
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        @media (max-width: 700px) {
+            .wrap { width: min(100% - 28px, var(--max-width)); }
+            nav { gap: 12px; }
+            .site-header { width: calc(100% - 28px); padding: 16px 18px; }
+            nav { gap: 14px; font-size: .9rem; }
+            .intro { grid-template-columns: 1fr; gap: 44px; min-height: 480px; padding: 132px 0 90px; }
+            .portrait { width: min(72vw, 280px); }
+            .section { padding: 72px 0; }
+            .section-heading { display: block; margin-bottom: 32px; }
+            .section-note { margin-top: 14px; }
+            .experience-item { grid-template-columns: 1fr; gap: 4px; padding: 24px; }
+            .role { text-align: left; }
+            .project-card { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>
-        Daniel Dot Website
-    </h1>
-    <p>
-        Hes so cool!
-        Wow
-    </p>
-    <img src="Photos/IMG_9952.jpeg" alt="Girl in a jacket" width="500" height="600">
+    <header class="site-header wrap">
+        <a class="logo" href="#top">Daniel Dot</a>
+        <nav aria-label="Primary navigation">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section id="about" class="intro wrap reveal">
+            <div>
+                <h1>I'm Daniel.</h1>
+                <p class="intro-copy">I’m a student, builder, and thoughtful collaborator interested in technology, design, and the people who use what we make.</p>
+            </div>
+            <img class="portrait" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=85" alt="Portrait placeholder for Daniel">
+        </section>
+
+        <section id="experience" class="section">
+            <div class="wrap">
+                <div class="section-heading reveal">
+                    <h2>Experience</h2>
+                </div>
+                <div class="experience-list">
+                    <article class="experience-item reveal">
+                        <span class="date">Feb 2026 — Aug 2026</span>
+                        <div><h3>Research Assistant</h3><span class="experience-location">University of Toronto Network Research Lab</span><p>Built small tools and helped organize workshops for students exploring software.</p></div>
+                        <span class="role">Club involvement</span>
+                    </article>
+                    <article class="experience-item reveal">
+                        <span class="date">2023 — 2024</span>
+                        <div><h3>Team Member</h3><span class="experience-location">Company Name</span><p>Worked with a small team to improve internal workflows and customer-facing experiences.</p></div>
+                        <span class="role">Work experience</span>
+                    </article>
+                    <article class="experience-item reveal">
+                        <span class="date">2022 — 2023</span>
+                        <div><h3>Volunteer</h3><span class="experience-location">Community Organization</span><p>Supported events, communications, and projects that brought people together.</p></div>
+                        <span class="role">Volunteer</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects">
+            <div class="wrap">
+                <div class="section-heading reveal">
+                    <h2>Projects</h2>
+                </div>
+                <div class="project-grid">
+                    <article class="project-card reveal">
+                        <div class="project-info"><span class="project-type">Web app</span><h3>Project One</h3><p>A clear, focused tool for turning a complicated workflow into something approachable.</p><a class="project-button" href="project-one.html">View project</a></div>
+                    </article>
+                    <article class="project-card reveal">
+                        <div class="project-info"><span class="project-type">Design + code</span><h3>Project Two</h3><p>An experiment in making information feel calm, useful, and easy to navigate.</p><a class="project-button" href="project-two.html">View project</a></div>
+                    </article>
+                    <article class="project-card reveal">
+                        <div class="project-info"><span class="project-type">Community</span><h3>Project Three</h3><p>A collaborative project shaped by conversations, quick prototypes, and shared ownership.</p><a class="project-button" href="project-three.html">View project</a></div>
+                    </article>
+                    <article class="project-card reveal">
+                        <div class="project-info"><span class="project-type">Open source</span><h3>Project Four</h3><p>A small technical project where I explored a new idea and documented what I learned.</p><a class="project-button" href="project-four.html">View project</a></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><div class="wrap">&copy; 2026 Daniel Dot <span aria-hidden="true">·</span> <a href="https://www.linkedin.com/in/daniel-dot/" target="_blank" rel="noreferrer">LinkedIn</a> <span aria-hidden="true">·</span> <a href="mailto:daniel.dot@mail.utoronto.ca">daniel.dot@mail.utoronto.ca</a></div></footer>
+
+    <script>
+        const revealItems = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .12 });
+        revealItems.forEach((item) => revealObserver.observe(item));
+    </script>
 </body>
 </html>

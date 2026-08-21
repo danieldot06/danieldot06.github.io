@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Four | Daniel Dot</title>
+    <style>
+        :root { --ink: #1d1d1f; --muted: #555; --line: #000; --max-width: 880px; }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: var(--ink); background: linear-gradient(135deg, #fff, #eef2fa) fixed; font: 16px/1.6 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .01em; }
+        .wrap { width: min(var(--max-width), calc(100% - 40px)); margin: 0 auto; }
+        header { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--line); }
+        a { color: inherit; } header a { text-decoration: none; } header a:last-child { padding: 8px 14px; border-radius: 999px; } header a:last-child:hover, header a:last-child:focus { color: #fff; background: var(--ink); }
+        main { padding: 110px 0; } .eyebrow { margin: 0 0 20px; font-size: .85rem; font-weight: 600; }
+        h1 { margin: 0 0 28px; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.05; letter-spacing: .01em; }
+        .intro { max-width: 600px; margin-bottom: 90px; color: var(--muted); font-size: 1.2rem; }
+        .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 24px 0; border-top: 2px solid var(--line); border-bottom: 1px solid var(--line); }
+        .details strong { display: block; margin-bottom: 4px; font-size: .8rem; } .details span { color: var(--muted); }
+        .story { max-width: 640px; margin-top: 72px; } h2 { margin: 0 0 16px; font-size: 2rem; } .story p { color: var(--muted); }
+        footer { padding: 24px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+        @media (max-width: 650px) { .details { grid-template-columns: 1fr; } main { padding: 72px 0; } .intro { margin-bottom: 60px; } }
+    </style>
+</head>
+<body>
+    <header class="wrap"><a href="index.html">Daniel Dot</a><a href="index.html#projects">Back to projects</a></header>
+    <main class="wrap">
+        <p class="eyebrow">Open source</p><h1>Project Four</h1>
+        <p class="intro">A small technical project where I explored a new idea and documented what I learned.</p>
+        <div class="details"><div><strong>Role</strong><span>Development, testing, and documentation.</span></div><div><strong>Tools</strong><span>GitHub, JavaScript, APIs</span></div><div><strong>Year</strong><span>2023</span></div></div>
+        <article class="story"><h2>About the project</h2><p>This is where you can explain the technical idea, the problem you explored, and what you learned while building it.</p><p>Add your process, results, code repository, and a link to the live project here.</p></article>
+    </main>
+    <footer class="wrap">&copy; 2026 Daniel Dot <span aria-hidden="true">·</span> <a href="https://www.linkedin.com/in/daniel-dot/" target="_blank" rel="noreferrer">LinkedIn</a> <span aria-hidden="true">·</span> <a href="mailto:daniel.dot@mail.utoronto.ca">daniel.dot@mail.utoronto.ca</a></footer>
+</body>
+</html>
